@@ -14,7 +14,7 @@ https://github.com/TsundereChen/audioplayer
 
 # 一、硬件
 
-STM32F407ZGT6  + 2.8‘TFT LCD + DY-SV17F语言模块 + 喇叭
+STM32F407ZGT6  + 2.8‘TFT LCD +A216  DY-SV17F语言模块 + 喇叭
 
 FreeRTOS + STemWin
 
