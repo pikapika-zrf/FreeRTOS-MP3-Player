@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\LIB;..\LIB\delay;..\LIB\sys;..\LIB\usart;..\LIB\STM32F4xx_HAL_Driver\Inc;..\LIB\STM32F4xx_HAL_Driver\Inc\Legacy;..\LIB\CORE;..\USER;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM4F</IncludePath>
+              <IncludePath>..\USER;..\LIB;..\LIB\delay;..\LIB\sys;..\LIB\usart;..\LIB\music;..\LIB\CORE;..\LIB\STM32F4xx_HAL_Driver\Inc;..\LIB\STM32F4xx_HAL_Driver\Inc\Legacy;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM4F</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
