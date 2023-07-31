@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\LIB;..\LIB\delay;..\LIB\sys;..\LIB\usart;..\LIB\music;..\LIB\CORE;..\LIB\STM32F4xx_HAL_Driver\Inc;..\LIB\STM32F4xx_HAL_Driver\Inc\Legacy;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM4F</IncludePath>
+              <IncludePath>..\USER;..\LIB;..\LIB\delay;..\LIB\sys;..\LIB\usart;..\LIB\music;..\LIB\led;..\LIB\lcd;..\LIB\CORE;..\LIB\STM32F4xx_HAL_Driver\Inc;..\LIB\STM32F4xx_HAL_Driver\Inc\Legacy;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM4F</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -421,6 +421,21 @@
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\LIB\delay\delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\lcd\lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>music.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\music\music.c</FilePath>
+            </File>
+            <File>
+              <FileName>led.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\led\led.c</FilePath>
             </File>
           </Files>
         </Group>

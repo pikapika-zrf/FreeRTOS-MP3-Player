@@ -20,7 +20,11 @@ FreeRTOS + STemWin
 
  [FreeRTOS 202210-LTS](https://github.com/FreeRTOS/FreeRTOS-LTS/tree/202210-LTS)  FreeRTOS Kernel  10.5.1
 
-开发板板载的 LCD 模块接口（32P FPC 座子），通过 FPC 排线和转接板连接到 TFT LCD模块。  
+## MUSIC
 
+## LCD
 
+驱动芯片ST7789
+
+分辨率320*240
 
