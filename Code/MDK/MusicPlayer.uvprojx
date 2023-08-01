@@ -324,7 +324,7 @@
             <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>0</uC99>
+            <uC99>1</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\LIB;..\LIB\delay;..\LIB\sys;..\LIB\usart;..\LIB\music;..\LIB\led;..\LIB\lcd;..\LIB\CORE;..\LIB\STM32F4xx_HAL_Driver\Inc;..\LIB\STM32F4xx_HAL_Driver\Inc\Legacy;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM4F</IncludePath>
+              <IncludePath>..\USER;..\LIB;..\LIB\delay;..\LIB\sys;..\LIB\usart;..\LIB\music;..\LIB\led;..\LIB\lcd;..\LIB\CORE;..\LIB\STM32F4xx_HAL_Driver\Inc;..\LIB\STM32F4xx_HAL_Driver\Inc\Legacy;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM4F;..\LIB\STemWin\inc;..\LIB\STemWin\Lib;..\LIB\STemWin\Config;..\LIB\STemWin\OS</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -956,6 +956,41 @@
               <FileName>core_cmSimd.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\LIB\CORE\core_cmSimd.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>STemWin</GroupName>
+          <Files>
+            <File>
+              <FileName>GUIConf.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STemWin\Config\GUIConf.c</FilePath>
+            </File>
+            <File>
+              <FileName>GUIDRV_Template.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STemWin\Config\GUIDRV_Template.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCDConf_FlexColor_Template.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STemWin\Config\LCDConf_FlexColor_Template.c</FilePath>
+            </File>
+            <File>
+              <FileName>LCD_TouchDrv.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STemWin\Config\LCD_TouchDrv.c</FilePath>
+            </File>
+            <File>
+              <FileName>GUI_X_FreeRTOS.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STemWin\OS\GUI_X_FreeRTOS.c</FilePath>
+            </File>
+            <File>
+              <FileName>STemWin532_CM4_OS_Keil.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\LIB\STemWin\Lib\STemWin532_CM4_OS_Keil.lib</FilePath>
             </File>
           </Files>
         </Group>

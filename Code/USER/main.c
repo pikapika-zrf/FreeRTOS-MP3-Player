@@ -3,27 +3,38 @@
 #include "usart.h"
 #include "led.h"
 #include "lcd.h"
+#include "WM.h"
+#include "GUI.h"
 
 #define USART_CMD_LEN	50
 
 int main(void)
 {
-	u8 lcd_id[12];				//存放LCD ID字符串
-	
-	HAL_Init();								//初始化HAL库
-	Stm32_Clock_Init(336,8,2,7);			//设置时钟,168Mhz
+//	u8 lcd_id[12];					//存放LCD ID字符串
+	int xPos,yPos;
+
+	HAL_Init();						//初始化HAL库
+	Stm32_Clock_Init(336,8,2,7);	//设置时钟,168Mhz
 	delay_init(168);
 	uart_init(115200);
+	SysTick_Config(SystemCoreClock / 1000);
 	LED_Init();
+	
+	__HAL_RCC_CRC_CLK_ENABLE();
+	
+	WM_SetCreateFlags(WM_CF_MEMDEV);//要加上这句话，允许存储器
+	GUI_Init();
+	GUI_Clear();
+//	GUI_SetBkColor(GUI_LIGHTBLUE);
+//	GUI_SetPenSize(30);
+//	GUI_SetColor(GUI_RED);
+//	GUI_DispStringAt("Hello World!",30,120);
 
-	LCD_Init();           			//初始化LCD FSMC接口
-	POINT_COLOR = RED;     			//画笔颜色：红色
-	sprintf((char*)lcd_id,"LCD ID:%04X",lcddev.id);		//将LCD ID打印到lcd_id数组。
-	
-	LCD_Clear(WHITE);
-	POINT_COLOR=RED;	  
-	LCD_ShowString(30,110,200,16,16,lcd_id);		//显示LCD ID		
-	
+	xPos = LCD_GetXSize()/2;
+	yPos = LCD_GetYSize()/3;
+	GUI_SetFont(GUI_FONT_COMIC24B_ASCII);
+	GUI_DispStringHCenterAt("Hello world!", xPos, yPos);	
+
 	while(1)
 	{	
 		LED0=!LED0;	 

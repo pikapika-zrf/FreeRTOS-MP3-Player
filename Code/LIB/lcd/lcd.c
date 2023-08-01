@@ -246,7 +246,7 @@ void LCD_Scan_Dir(u8 dir)
 
 //画点
 //POINT_COLOR:此点的颜色
-void LCD_DrawPoint(u16 x,u16 y)
+void LCD_DrawPoint_defalutColor(u16 x,u16 y)
 { 
 	LCD_SetCursor(x,y);		//设置光标位置 
 	LCD_WriteRAM_Prepare();	//开始写入GRAM
@@ -255,7 +255,7 @@ void LCD_DrawPoint(u16 x,u16 y)
 
 //快速画点
 //color:颜色
-void LCD_Fast_DrawPoint(u16 x,u16 y,u32 color)
+void LCD_DrawPoint(u16 x,u16 y,u32 color)
 {	   
 	LCD_WR_REG(lcddev.setxcmd);
 	LCD_WR_DATA(x >> 8);
@@ -627,7 +627,7 @@ void LCD_DrawLine(u16 x1, u16 y1, u16 x2, u16 y2)
 
     for (t = 0; t <= distance + 1; t++ )    //画线输出
     {
-        LCD_DrawPoint(uRow, uCol); //画点
+        LCD_DrawPoint_defalutColor(uRow, uCol); //画点
         xerr += delta_x ;
         yerr += delta_y ;
 
@@ -668,14 +668,14 @@ void LCD_Draw_Circle(u16 x0,u16 y0,u8 r)
 
     while (a <= b)
     {
-        LCD_DrawPoint(x0 + a, y0 - b);        //5
-        LCD_DrawPoint(x0 + b, y0 - a);        //0
-        LCD_DrawPoint(x0 + b, y0 + a);        //4
-        LCD_DrawPoint(x0 + a, y0 + b);        //6
-        LCD_DrawPoint(x0 - a, y0 + b);        //1
-        LCD_DrawPoint(x0 - b, y0 + a);
-        LCD_DrawPoint(x0 - a, y0 - b);        //2
-        LCD_DrawPoint(x0 - b, y0 - a);        //7
+        LCD_DrawPoint_defalutColor(x0 + a, y0 - b);        //5
+        LCD_DrawPoint_defalutColor(x0 + b, y0 - a);        //0
+        LCD_DrawPoint_defalutColor(x0 + b, y0 + a);        //4
+        LCD_DrawPoint_defalutColor(x0 + a, y0 + b);        //6
+        LCD_DrawPoint_defalutColor(x0 - a, y0 + b);        //1
+        LCD_DrawPoint_defalutColor(x0 - b, y0 + a);
+        LCD_DrawPoint_defalutColor(x0 - a, y0 - b);        //2
+        LCD_DrawPoint_defalutColor(x0 - b, y0 - a);        //7
         a++;
 
         //使用Bresenham算法画圆
@@ -708,8 +708,8 @@ void LCD_ShowChar(u16 x, u16 y, u8 num, u8 size, u8 mode)
 		else return;									//没有的字库
 		for(t1 = 0; t1 < 8; t1++)
 		{			    
-			if(temp & 0x80) LCD_Fast_DrawPoint(x,y,POINT_COLOR);
-			else if(mode == 0) LCD_Fast_DrawPoint(x,y,BACK_COLOR);
+			if(temp & 0x80) LCD_DrawPoint(x,y,POINT_COLOR);
+			else if(mode == 0) LCD_DrawPoint(x,y,BACK_COLOR);
 			temp <<= 1;
 			y++;
 			if(y >= lcddev.height)  return;		//超区域了

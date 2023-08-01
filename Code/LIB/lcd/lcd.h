@@ -87,8 +87,8 @@ void LCD_DisplayOn(void);													//开显示
 void LCD_DisplayOff(void);													//关显示
 void LCD_Clear(u32 Color);	 												//清屏
 void LCD_SetCursor(u16 Xpos, u16 Ypos);										//设置光标
-void LCD_DrawPoint(u16 x,u16 y);											//画点
-void LCD_Fast_DrawPoint(u16 x,u16 y,u32 color);								//快速画点
+void LCD_DrawPoint_defalutColor(u16 x,u16 y);								//画点
+void LCD_DrawPoint(u16 x,u16 y,u32 color);									//快速画点
 u32  LCD_ReadPoint(u16 x,u16 y); 											//读点 
 void LCD_Draw_Circle(u16 x0,u16 y0,u8 r);						 			//画圆
 void LCD_DrawLine(u16 x1, u16 y1, u16 x2, u16 y2);							//画线

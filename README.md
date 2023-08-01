@@ -14,13 +14,11 @@ https://github.com/TsundereChen/audioplayer
 
 # 一、硬件
 
-STM32F407ZGT6  + 2.8‘TFT LCD +A216  DY-SV17F语言模块 + 喇叭
-
-FreeRTOS + STemWin
-
- [FreeRTOS 202210-LTS](https://github.com/FreeRTOS/FreeRTOS-LTS/tree/202210-LTS)  FreeRTOS Kernel  10.5.1
+STM32F407ZGT6  + 2.8‘TFT LCD +DY-SV17F语言模块 + 喇叭
 
 ## MUSIC
+
+
 
 ## LCD
 
@@ -28,3 +26,14 @@ FreeRTOS + STemWin
 
 分辨率320*240
 
+STemWin V5.32  
+
+参考博客https://doc.embedfire.com/stemwin/emwin/zh/latest/book/transplant_8080.html
+
+https://blog.csdn.net/wangyijieonline/article/details/76795084
+
+
+
+## FreeRTOS 
+
+ [FreeRTOS 202210-LTS](https://github.com/FreeRTOS/FreeRTOS-LTS/tree/202210-LTS)  FreeRTOS Kernel  10.5.1

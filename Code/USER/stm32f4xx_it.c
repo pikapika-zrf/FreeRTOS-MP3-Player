@@ -41,6 +41,8 @@
 #include "main.h"
 #include "stm32f4xx_it.h"
 
+#include "led.h"
+
 /** @addtogroup STM32F4xx_HAL_Examples
   * @{
   */
@@ -154,9 +156,15 @@ void DebugMon_Handler(void)
   * @param  None
   * @retval None
   */
+//extern __IO int32_t OS_TimeMS;
+
 //void SysTick_Handler(void)
 //{
-//  HAL_IncTick();
+//  	OS_TimeMS++;
+//	if(OS_TimeMS%100 == 0)
+//	{
+//		LED1 = !LED1;//加个LED指示一下
+//	}
 //}
 
 /******************************************************************************/
