@@ -423,11 +423,6 @@
               <FilePath>..\LIB\delay\delay.c</FilePath>
             </File>
             <File>
-              <FileName>lcd.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\LIB\lcd\lcd.c</FilePath>
-            </File>
-            <File>
               <FileName>music.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\LIB\music\music.c</FilePath>
@@ -436,6 +431,21 @@
               <FileName>led.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\LIB\led\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>st7789_drv.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\lcd\st7789_drv.c</FilePath>
+            </File>
+            <File>
+              <FileName>atk_md0280_touch.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\lcd\atk_md0280_touch.c</FilePath>
+            </File>
+            <File>
+              <FileName>atk_md0280_touch_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\lcd\atk_md0280_touch_spi.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -957,6 +967,16 @@
               <FileType>5</FileType>
               <FilePath>..\LIB\CORE\core_cmSimd.h</FilePath>
             </File>
+            <File>
+              <FileName>arm_cortexM4lf_math.lib</FileName>
+              <FileType>4</FileType>
+              <FilePath>..\LIB\CORE\arm_cortexM4lf_math.lib</FilePath>
+            </File>
+            <File>
+              <FileName>arm_math.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\LIB\CORE\arm_math.h</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -978,11 +998,6 @@
               <FilePath>..\LIB\STemWin\Config\LCDConf_FlexColor_Template.c</FilePath>
             </File>
             <File>
-              <FileName>LCD_TouchDrv.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\LIB\STemWin\Config\LCD_TouchDrv.c</FilePath>
-            </File>
-            <File>
               <FileName>GUI_X_FreeRTOS.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\LIB\STemWin\OS\GUI_X_FreeRTOS.c</FilePath>
@@ -991,6 +1006,11 @@
               <FileName>STemWin532_CM4_OS_Keil.lib</FileName>
               <FileType>4</FileType>
               <FilePath>..\LIB\STemWin\Lib\STemWin532_CM4_OS_Keil.lib</FilePath>
+            </File>
+            <File>
+              <FileName>GUI_X_Touch_Analog.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STemWin\Config\GUI_X_Touch_Analog.c</FilePath>
             </File>
           </Files>
         </Group>

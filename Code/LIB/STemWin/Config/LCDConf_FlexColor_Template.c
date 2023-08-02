@@ -53,7 +53,7 @@ Purpose     : Display controller configuration (single layer)
 
 #include "GUI.h"
 #include "GUIDRV_FlexColor.h"
-#include "lcd.h"
+#include "st7789_drv.h"
 
 /*********************************************************************
 *
@@ -230,7 +230,7 @@ int LCD_X_DisplayDriver(unsigned LayerIndex, unsigned Cmd, void * pData) {
     // to be adapted by the customer...
     //
     
-	LCD_Init();           			//初始化LCD FSMC接口
+	TFTLCD_Init();           			//初始化LCD FSMC接口
     return 0;
   }
   default:

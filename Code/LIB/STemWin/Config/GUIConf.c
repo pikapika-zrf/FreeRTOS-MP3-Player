@@ -52,7 +52,6 @@ Purpose     : Display controller initialization
   */
 
 #include "GUI.h"
-
 /*********************************************************************
 *
 *       Defines

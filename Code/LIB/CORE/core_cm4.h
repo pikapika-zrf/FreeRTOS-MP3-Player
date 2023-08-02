@@ -41,6 +41,9 @@
 #ifndef __CORE_CM4_H_GENERIC
 #define __CORE_CM4_H_GENERIC
 
+#define __CC_ARM 			1
+#define __TARGET_FPU_VFP 	1
+
 #include <stdint.h>
 
 #ifdef __cplusplus
