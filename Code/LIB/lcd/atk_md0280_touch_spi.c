@@ -11,7 +11,7 @@ static void atk_md0280_touch_spi_write(uint8_t dat)
 {
     uint8_t dat_index;
     
-    for (dat_index=0; dat_index<8; dat_index++)
+    for (dat_index = 0; dat_index < 8; dat_index++)
     {
         if ((dat & 0x80) != 0)
         {
@@ -94,7 +94,7 @@ uint16_t atk_md0280_touch_spi_read(uint8_t cmd)
     delay_us(1);
     ATK_MD0280_TOUCH_SPI_CLK(0);
     
-    for (dat_index=0; dat_index<16; dat_index++)
+    for (dat_index = 0; dat_index < 16; dat_index++)
     {
         dat <<= 1;
         ATK_MD0280_TOUCH_SPI_CLK(0);

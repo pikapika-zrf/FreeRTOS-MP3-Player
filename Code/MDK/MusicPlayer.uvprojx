@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\LIB;..\LIB\delay;..\LIB\sys;..\LIB\usart;..\LIB\music;..\LIB\led;..\LIB\lcd;..\LIB\CORE;..\LIB\STM32F4xx_HAL_Driver\Inc;..\LIB\STM32F4xx_HAL_Driver\Inc\Legacy;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM4F;..\LIB\STemWin\inc;..\LIB\STemWin\Lib;..\LIB\STemWin\Config;..\LIB\STemWin\OS</IncludePath>
+              <IncludePath>..\USER;..\LIB;..\LIB\delay;..\LIB\sys;..\LIB\usart;..\LIB\music;..\LIB\led;..\LIB\lcd;..\LIB\CORE;..\LIB\STM32F4xx_HAL_Driver\Inc;..\LIB\STM32F4xx_HAL_Driver\Inc\Legacy;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM4F;..\LIB\STemWin\inc;..\LIB\STemWin\Lib;..\LIB\STemWin\Config;..\LIB\STemWin\OS;..\LIB\TOUCH;..\LIB\STemWin\GUI</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -1011,6 +1011,11 @@
               <FileName>GUI_X_Touch_Analog.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\LIB\STemWin\Config\GUI_X_Touch_Analog.c</FilePath>
+            </File>
+            <File>
+              <FileName>FramewinDLG.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LIB\STemWin\GUI\FramewinDLG.c</FilePath>
             </File>
           </Files>
         </Group>

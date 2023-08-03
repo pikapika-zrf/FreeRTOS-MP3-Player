@@ -26,6 +26,9 @@
 
 /* ²Ù×÷º¯Êı */
 void atk_md0280_touch_init(void);                        /* ATK-MD0280Ä£¿é´¥Ãş³õÊ¼»¯ */
+uint16_t atk_md0280_touch_get_adc(uint8_t cmd);
+uint16_t atk_md0280_touch_get_adc2(uint8_t cmd);
 uint8_t atk_md0280_touch_scan(uint16_t *x, uint16_t *y);    /* ATK-MD0280Ä£¿é´¥ÃşÉ¨Ãè */
+uint8_t atk_md0280_touch_scan_tmp(uint16_t *x, uint16_t *y, uint16_t *x_adc_out,uint16_t *y_adc_out);    /* ATK-MD0280Ä£¿é´¥ÃşÉ¨Ãè */
 
 #endif

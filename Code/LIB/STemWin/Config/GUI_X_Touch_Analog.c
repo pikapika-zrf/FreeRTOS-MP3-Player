@@ -1,7 +1,6 @@
 #include "GUI.h"
 #include "atk_md0280_touch.h"
-#include "usart.h"
-#include "st7789_drv.h"
+//#include "touch.h"
 
 //本文件的函数为触摸驱动，由emWin上层调用
 
@@ -19,17 +18,10 @@ void GUI_TOUCH_X_ActivateY(void)
 
 int  GUI_TOUCH_X_MeasureX(void)
 {
-	uint16_t x;
-    uint16_t y;
-	atk_md0280_touch_scan(&x, &y);
-    return x;
-
+	return atk_md0280_touch_get_adc(0XD0);
 }
 
 int  GUI_TOUCH_X_MeasureY(void)
 {
-    uint16_t x;
-    uint16_t y;
-	atk_md0280_touch_scan(&x, &y);
-    return y;
+    return atk_md0280_touch_get_adc(0X90);
 }

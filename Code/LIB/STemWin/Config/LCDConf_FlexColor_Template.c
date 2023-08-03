@@ -93,6 +93,11 @@ Purpose     : Display controller configuration (single layer)
   #error No display driver defined!
 #endif
 
+#define TOUCH_AD_TOP 200
+#define TOUCH_AD_BOTTOM 3900
+#define TOUCH_AD_LEFT 200
+#define TOUCH_AD_RIGHT 3900
+
 /*********************************************************************
 *
 *       Local functions
@@ -193,6 +198,13 @@ void LCD_X_Config(void) {
 //  PortAPI.pfWriteM16_A1 = LcdWriteDataMultiple;
 //  PortAPI.pfReadM16_A1  = LcdReadDataMultiple;
 //  GUIDRV_FlexColor_SetFunc(pDevice, &PortAPI, GUIDRV_FLEXCOLOR_F66709, GUIDRV_FLEXCOLOR_M16C0B16);
+	 /*第4部分，设置触摸原点 */
+    GUI_TOUCH_SetOrientation((GUI_MIRROR_X * LCD_GetMirrorXEx(0)) |
+                            (GUI_MIRROR_Y * LCD_GetMirrorYEx(0)) |
+                            (GUI_SWAP_XY  * LCD_GetSwapXYEx (0)));
+    /*设置触摸校准 */
+    GUI_TOUCH_Calibrate(GUI_COORD_X, 0, 240-1, TOUCH_AD_LEFT, TOUCH_AD_RIGHT);
+    GUI_TOUCH_Calibrate(GUI_COORD_Y, 0, 320-1, TOUCH_AD_TOP, TOUCH_AD_BOTTOM);
 }
 
 /*********************************************************************

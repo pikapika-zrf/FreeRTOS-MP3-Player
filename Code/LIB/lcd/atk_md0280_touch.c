@@ -6,7 +6,7 @@
 #define ATK_MD0280_TOUCH_CMD_Y  0x90
 
 /* ATK-MD0280模块触摸状态数据结构体 */
-static struct
+struct atk_md0280_touch_sta
 {
     struct
     {
@@ -18,7 +18,9 @@ static struct
         uint16_t x;
         uint16_t y;
     } center;       /* 中心坐标的ADC值 */
-} g_atk_md0280_touch_sta = {0};
+};
+
+static struct atk_md0280_touch_sta g_atk_md0280_touch_sta = {0};
 
 /**
  * @brief       ATK-MD0280模块触摸硬件初始化
@@ -49,7 +51,7 @@ static void atk_md0280_touch_hw_init(void)
  *                   ATK_MD0280_TOUCH_CMD_Y: 获取Y轴的ADC值（LCD显示内容未旋转）
  * @retval      获取到的触摸ADC值
  */
-static uint16_t atk_md0280_touch_get_adc(uint8_t cmd)
+uint16_t atk_md0280_touch_get_adc(uint8_t cmd)
 {
     uint16_t dat[ATK_MD0280_TOUCH_READ_TIMES];
     uint8_t dat_index;
@@ -57,14 +59,14 @@ static uint16_t atk_md0280_touch_get_adc(uint8_t cmd)
     uint16_t dat_tmp;
     uint16_t dat_sum = 0;
     
-    for (dat_index=0; dat_index < ATK_MD0280_TOUCH_READ_TIMES; dat_index++)
+    for (dat_index = 0; dat_index < ATK_MD0280_TOUCH_READ_TIMES; dat_index++)
     {
         dat[dat_index] = atk_md0280_touch_spi_read(cmd);
     }
     
-    for (dat_index=0; dat_index < (ATK_MD0280_TOUCH_READ_TIMES - 1); dat_index++)
+    for (dat_index = 0; dat_index < (ATK_MD0280_TOUCH_READ_TIMES - 1); dat_index++)
     {
-        for (dat_index2=(dat_index + 1); dat_index2 < ATK_MD0280_TOUCH_READ_TIMES; dat_index2++)
+        for (dat_index2 = (dat_index + 1); dat_index2 < ATK_MD0280_TOUCH_READ_TIMES; dat_index2++)
         {
             if (dat[dat_index] > dat[dat_index2])
             {
@@ -75,7 +77,7 @@ static uint16_t atk_md0280_touch_get_adc(uint8_t cmd)
         }
     }
     
-    for (dat_index=ATK_MD0280_TOUCH_READ_DISCARD; dat_index<(ATK_MD0280_TOUCH_READ_TIMES-ATK_MD0280_TOUCH_READ_DISCARD); dat_index++)
+    for (dat_index = ATK_MD0280_TOUCH_READ_DISCARD; dat_index < (ATK_MD0280_TOUCH_READ_TIMES - ATK_MD0280_TOUCH_READ_DISCARD); dat_index++)
     {
         dat_sum += dat[dat_index];
     }
@@ -91,7 +93,7 @@ static uint16_t atk_md0280_touch_get_adc(uint8_t cmd)
  *                   ATK_MD0280_TOUCH_CMD_Y: 获取Y轴的ADC值（LCD显示内容未旋转）
  * @retval      获取到的触摸ADC值
  */
-static uint16_t atk_md0280_touch_get_adc2(uint8_t cmd)
+uint16_t atk_md0280_touch_get_adc2(uint8_t cmd)
 {
     uint16_t dat1;
     uint16_t dat2;
@@ -147,18 +149,13 @@ static void atk_md0280_touch_calibration(void)
     uint8_t point_index;
     int16_t d1, d2, d3, d4;
     double x_fac, y_fac;
-    char *str = "Please use the stylus click the cross on the screen.The cross will always move until the screen adjustment is completed.";
+    char *str = "Please click the cross on the screen.The cross will always move until the screen adjustment is completed.";
     LCD_Clear(WHITE);
-    LCD_ShowString( 40,
-                            40,
-                            lcddev.width - 80,
-                            lcddev.height - 80,
-                            16,
-                            (u8 *)str);
+    LCD_ShowString(40, 40, lcddev.width - 80, lcddev.height - 80, 16, (u8 *)str);
     
     while (1)
     {
-        for (point_index=0; point_index<5 + 1; point_index++)
+        for (point_index = 0; point_index <= 5; point_index++)
         {
             switch (point_index)
             {
@@ -202,15 +199,10 @@ static void atk_md0280_touch_calibration(void)
                     x_fac = (double)d1 / d3;
                     y_fac = (double)d2 / d4;
                     
-                    if (x_fac < 0)
-                    {
-                        x_fac = -x_fac;
-                    }
-                    if (y_fac < 0)
-                    {
-                        y_fac = -y_fac;
-                    }
-                    
+
+					x_fac = (x_fac > 0) ? x_fac : -x_fac;
+					y_fac = (y_fac > 0) ? y_fac : -y_fac;
+
                     if (    x_fac < 0.95 || x_fac > 1.05 || y_fac < 0.95 || y_fac > 1.05 ||
                             abs(d1) > 4095 || abs(d2) > 4095 || abs(d3) > 4095 || abs(d4) > 4095 ||
                             abs(d1) == 0 || abs(d2) == 0 || abs(d3) == 0 || abs(d4) == 0)
@@ -226,12 +218,7 @@ static void atk_md0280_touch_calibration(void)
 					char *str = "Touch Screen Adjust OK!";
                             
                     LCD_Clear(WHITE);
-                    LCD_ShowString( 30,
-                                            100,
-                                            lcddev.width,
-                                            lcddev.height,
-                                            16,
-                                            (u8 *)str);
+                    LCD_ShowString(30, 100, lcddev.width, lcddev.height, 16, (u8 *)str);
                     delay_ms(1000);
                     LCD_Clear(WHITE);
                     
@@ -256,7 +243,7 @@ void atk_md0280_touch_init(void)
 {
     atk_md0280_touch_hw_init();
     atk_md0280_touch_spi_init();
-    atk_md0280_touch_calibration();
+    //atk_md0280_touch_calibration();
 }
 
 /**
@@ -280,7 +267,7 @@ uint8_t atk_md0280_touch_scan(uint16_t *x, uint16_t *y)
     {
         x_adc = atk_md0280_touch_get_adc2(ATK_MD0280_TOUCH_CMD_X);
         y_adc = atk_md0280_touch_get_adc2(ATK_MD0280_TOUCH_CMD_Y);
-        
+        		
         x_raw = (int16_t)(x_adc - g_atk_md0280_touch_sta.center.x) / g_atk_md0280_touch_sta.fac.x + lcddev.width / 2;
         y_raw = (int16_t)(y_adc - g_atk_md0280_touch_sta.center.y) / g_atk_md0280_touch_sta.fac.y + lcddev.height / 2;
         
@@ -324,3 +311,64 @@ uint8_t atk_md0280_touch_scan(uint16_t *x, uint16_t *y)
     
     return ATK_MD0280_TOUCH_EMPTY;
 }
+uint8_t atk_md0280_touch_scan_tmp(uint16_t *x, uint16_t *y, uint16_t *x_adc_out,uint16_t *y_adc_out)
+{
+    uint16_t x_adc;
+    uint16_t y_adc;
+    //atk_md0280_lcd_disp_dir_t 
+	int dir;
+    uint16_t x_raw;
+    uint16_t y_raw;
+    
+    if (ATK_MD0280_TOUCH_READ_PEN() == 0)
+    {
+        x_adc = atk_md0280_touch_get_adc2(ATK_MD0280_TOUCH_CMD_X);
+        y_adc = atk_md0280_touch_get_adc2(ATK_MD0280_TOUCH_CMD_Y);
+        
+		*x_adc_out = x_adc;
+		*y_adc_out = y_adc;
+		
+        x_raw = (int16_t)(x_adc - g_atk_md0280_touch_sta.center.x) / g_atk_md0280_touch_sta.fac.x + lcddev.width / 2;
+        y_raw = (int16_t)(y_adc - g_atk_md0280_touch_sta.center.y) / g_atk_md0280_touch_sta.fac.y + lcddev.height / 2;
+        
+        if((x_raw >= lcddev.width) || (y_raw >= lcddev.height))
+        {
+            return ATK_MD0280_TOUCH_ERROR;
+        }
+        
+        //dir = atk_md0280_get_disp_dir();
+		dir = 0;
+        switch (dir)
+        {
+            case 0:		//ATK_MD0280_LCD_DISP_DIR_0
+            {
+                *x = x_raw;
+                *y = y_raw;
+                break;
+            }
+            case 1:		//ATK_MD0280_LCD_DISP_DIR_90:
+            {
+                *x = y_raw;
+                *y = lcddev.height - x_raw;
+                break;
+            }
+            case 2:		//ATK_MD0280_LCD_DISP_DIR_180:
+            {
+                *x = lcddev.width - x_raw;
+                *y = lcddev.height - y_raw;
+                break;
+            }
+            case 3:		//ATK_MD0280_LCD_DISP_DIR_270:
+            {
+                *x = lcddev.width - y_raw;
+                *y = x_raw;
+                break;
+            }
+        }
+        
+        return ATK_MD0280_TOUCH_EOK;
+    }
+    
+    return ATK_MD0280_TOUCH_EMPTY;
+}
+
