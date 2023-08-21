@@ -1,52 +1,41 @@
-/**
-  ******************************************************************************
-  * @file    Templates/Inc/main.h 
-  * @author  MCD Application Team
-  * @version V1.2.6
-  * @date    17-February-2017
-  * @brief   Header for main.c module
-  ******************************************************************************
-  * @attention
-  *
-  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
-  *
-  * Redistribution and use in source and binary forms, with or without modification,
-  * are permitted provided that the following conditions are met:
-  *   1. Redistributions of source code must retain the above copyright notice,
-  *      this list of conditions and the following disclaimer.
-  *   2. Redistributions in binary form must reproduce the above copyright notice,
-  *      this list of conditions and the following disclaimer in the documentation
-  *      and/or other materials provided with the distribution.
-  *   3. Neither the name of STMicroelectronics nor the names of its contributors
-  *      may be used to endorse or promote products derived from this software
-  *      without specific prior written permission.
-  *
-  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-  * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-  * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
-  * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-  * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
-  * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
-  * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
-  * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
-  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-  *
-  ******************************************************************************
-  */
-  
-/* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __MAIN_H
 #define __MAIN_H
 
-/* Includes ------------------------------------------------------------------*/
 #include "stm32f4xx_hal.h"
 
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* Exported functions ------------------------------------------------------- */
+#include "sys.h"
+#include "delay.h"
+#include "usart.h"
+#include "led.h"
+#include "st7789_drv.h"
+
+#include "WM.h"
+#include "GUI.h"
+#include "arm_math.h"
+#include "atk_md0280_touch.h"
+#include "FramewinDLG.h"
+
+#include "FreeRTOS.h"
+#include "task.h"
+
+#define START_TASK_PRIO 	1 			//任务优先级
+#define START_STK_SIZE 		128 		//任务堆栈大小
+TaskHandle_t StartTask_Handler; 		//任务句柄
+void start_task(void *pvParameters); 	//任务函数
+
+#define LED0_TASK_PRIO 		2 			//任务优先级
+#define LED0_STK_SIZE 		50 			//任务堆栈大小
+TaskHandle_t LED0Task_Handler; 			//任务句柄
+void led0_task(void *p_arg); 			//任务函数
+
+#define LED1_TASK_PRIO 		3 			//任务优先级
+#define LED1_STK_SIZE 		50 			//任务堆栈大小
+TaskHandle_t LED1Task_Handler; 			//任务句柄
+void led1_task(void *p_arg); 			//任务函数
+
+#define FLOAT_TASK_PRIO 	4 			//任务优先级
+#define FLOAT_STK_SIZE 		128 		//任务堆栈大小
+TaskHandle_t FLOATTask_Handler; 		//任务句柄
+void float_task(void *p_arg); 			//任务函数
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
